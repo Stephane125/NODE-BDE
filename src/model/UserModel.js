@@ -13,8 +13,8 @@ const UserModel = {
             callback(null, results[0]);
         });
     },
-    createUser: (mail, nom_u, prenom_u, password, localisation, statut, callback) => {
-        db.query('INSERT INTO user (mail, nom_u, prenom_u, password, localisation, statut) VALUES (?, ?, ?, ?, ?, ?)', [mail, nom_u, prenom_u, password, localisation, statut], callback);
+    createUser: (mail, nom_u, prenom_u, password, localisation, callback) => {
+        db.query('INSERT INTO user (mail, nom_u, prenom_u, password, localisation) VALUES (?, ?, ?, ?, ?)', [mail, nom_u, prenom_u, password, localisation], callback);
     },
     updateUser: (id, nom_u, prenom_u, password, localisation, statut, callback) => {
         db.query('UPDATE user SET nom_u = ?, prenom_u = ?, password = ?, localisation = ?, statut = ? WHERE id = ?', [nom_u, prenom_u, password, localisation, statut, id], callback);

@@ -28,20 +28,20 @@ const userController = {
         });
     },
     createUser: (req, res) => {
-        const { mail, nom_u, prenom_u, password, localisation, statut } = req.body;
+        const { mail, nom_u, prenom_u, password, localisation } = req.body;
         bcrypt.hash(password, 10, (err, hash) => {
             if (err) {
                 console.error('Error hashing password:', err);
                 res.status(500).send('Internal Server Error');
                 return;
             }
-            UserModel.createUser(mail, nom_u, prenom_u, hash, localisation, statut, (error, result) => {
+            UserModel.createUser(mail, nom_u, prenom_u, hash, localisation, (error, result) => {
                 if (error) {
                     console.error('Error creating user:', error);
                     res.status(500).send('Internal Server Error');
                     return;
                 }
-                res.json({ id: result.insertId, mail, nom_u, prenom_u, localisation, statut });
+                res.json({ id: result.insertId, mail, nom_u, prenom_u, localisation });
             });
         });
     },
